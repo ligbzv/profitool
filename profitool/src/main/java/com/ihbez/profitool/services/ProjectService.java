@@ -23,6 +23,12 @@ public class ProjectService {
 
 
     public Project findProjectByIdentifier(String projectId){
-        return projectRepository.findByProjectIdentifier(projectId.toUpperCase());
+
+        Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
+        if(project == null) {
+            throw new ProjectIdException("Proect ID '"+projectId.toUpperCase()+"' is not find.");
+        }
+
+        return project;
     }
 }
